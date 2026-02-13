@@ -1,7 +1,7 @@
 import org.w3c.dom.ranges.Range;
 
 import java.util.Random;
-
+0
 public class Conta {
     String Nome;
     int Numero;
@@ -10,7 +10,7 @@ public class Conta {
     public void gerarNumero(){
         Random rand = new Random();
 
-    Numero = rand.nextInt(1000);
+    Numero = rand.nextInt(1000, 9999);
     }
 
     public void inicarConta(){
@@ -22,8 +22,12 @@ public class Conta {
         Saldo += valor;
     }
 
-    public void subtrariSaldo(double valor){
+    public String subtrariSaldo(double valor){
+        if (valor > Saldo){
+            return "Valor Maior que Saldo";
+        }
         Saldo -= valor;
+        return "Saque feito com Sucesso";
     }
 
     public double verificarSaldo(){
