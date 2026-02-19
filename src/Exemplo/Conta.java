@@ -1,7 +1,7 @@
-import org.w3c.dom.ranges.Range;
+package Exemplo;
 
 import java.util.Random;
-0
+
 public class Conta {
     String Nome;
     int Numero;
