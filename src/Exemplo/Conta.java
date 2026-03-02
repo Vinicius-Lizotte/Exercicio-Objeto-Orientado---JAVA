@@ -5,7 +5,7 @@ import java.util.Random;
 public class Conta {
     String Nome;
     int Numero;
-    double Saldo;
+    private double Saldo;
 
     public void gerarNumero(){
         Random rand = new Random();
@@ -28,6 +28,11 @@ public class Conta {
         }
         Saldo -= valor;
         return "Saque feito com Sucesso";
+    }
+
+    public void transferir(double valor, Conta destino){
+        this.subtrariSaldo(valor);
+        destino.adicionarSaldo(valor);
     }
 
     public double verificarSaldo(){
