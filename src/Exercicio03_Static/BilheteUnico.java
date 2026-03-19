@@ -4,37 +4,39 @@ import java.util.Random;
 
 public class BilheteUnico {
     int Numero;
-    private String Nome;
     private double Saldo;
     private final static int TarifaBase = 5;
-    private String TipoTarifa;
+    Usuario usuario;
 
     Random rd = new Random();
 
-    public BilheteUnico(String Nome, String TipoTarifa){
+    public BilheteUnico(Usuario usuario){
         this.Numero = rd.nextInt(100, 9999);
-        this.Nome = Nome;
         this.Saldo = 0;
-        this.TipoTarifa = TipoTarifa;
+        this.usuario = usuario;
     }
 
     public void carregar(double valor){
         Saldo += valor;
     }
 
-    public void subtrair(double valor){
-        Saldo -= valor;
+    public boolean subtrair(double valor){
+        if (valor < Saldo){
+            Saldo -= valor;
+            return true;
+        }
+        return false;
     }
 
     public double getSaldo(){
         return Saldo;
     }
 
-    public void catraca(){
-        if (TipoTarifa == "Aluno" || TipoTarifa == "Professor"){
-            subtrair((TarifaBase * 0.5));
+    public boolean catraca(){
+        if (usuario.tipoTarifa == "Aluno" || usuario.tipoTarifa == "Professor"){
+            return subtrair((TarifaBase * 0.5));
         } else {
-            subtrair(TarifaBase);
+            return subtrair(TarifaBase);
         }
     }
 }
