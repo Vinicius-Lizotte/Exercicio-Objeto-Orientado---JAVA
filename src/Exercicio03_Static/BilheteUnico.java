@@ -3,10 +3,10 @@ package Exercicio03_Static;
 import java.util.Random;
 
 public class BilheteUnico {
-    int Numero;
+    private int Numero;
     private double Saldo;
-    private final static int TarifaBase = 5;
-    Usuario usuario;
+    private final static double TarifaBase = 5;
+    private Usuario usuario;
 
     Random rd = new Random();
 
@@ -21,7 +21,7 @@ public class BilheteUnico {
     }
 
     public boolean subtrair(double valor){
-        if (valor < Saldo){
+        if (valor <= Saldo){
             Saldo -= valor;
             return true;
         }
@@ -32,11 +32,17 @@ public class BilheteUnico {
         return Saldo;
     }
 
-    public boolean catraca(){
-        if (usuario.tipoTarifa == "Aluno" || usuario.tipoTarifa == "Professor"){
-            return subtrair((TarifaBase * 0.5));
-        } else {
-            return subtrair(TarifaBase);
+    public double getTarifa(){
+        double valor = TarifaBase / 2;
+
+        if (usuario.tipoTarifa.equalsIgnoreCase("comum")){
+            valor = TarifaBase;
         }
+        return valor;
+    }
+
+    public boolean catraca(){
+        double valor = getTarifa();
+            return subtrair(valor);
     }
 }

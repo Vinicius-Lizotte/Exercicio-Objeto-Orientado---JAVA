@@ -21,17 +21,12 @@ public class main {
 
             System.out.println("-----------------------------------");
             switch (opc) {
-                case 1:
-                    cadastrar();
-                    break;
-                    case 2:
-                        Carregar();
-                        break;
-                        case 3:
-                            Saldo();
-                            break;
-                            case 4:
-                                Catraca();
+                case 1  -> cadastrar();
+                case 2  -> Carregar();
+                case 3  -> Saldo();
+                case 4  -> Catraca();
+                case 5  -> System.out.println("Até Breve !");
+                default -> System.out.println("Opção Inválida");
             }
             
         } while (opc != 5);
@@ -64,6 +59,7 @@ public class main {
             } else {
                 System.out.println("Aceso Nao Liberado");
             }
+            System.out.println("Saldo: " + bilhete.getSaldo());
         }
     }
 
